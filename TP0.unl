@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<lab name="TP0" version="1" scripttimeout="300" lock="0" author="Germain">
+<lab name="TP0" version="1" scripttimeout="300" lock="0" author="Rayanne">
   <description>Premier Lab de la formation</description>
   <topology>
     <nodes>
