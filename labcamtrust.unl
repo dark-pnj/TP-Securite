@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<lab name="labcamtrust" version="1" scripttimeout="300" lock="0" author="RAYANNE">
+  <description>TP CAMTRUST</description>
+  <topology>
+    <nodes>
+      <node id="1" name="VPC1" type="vpcs" template="vpcs" image="" ethernet="1" delay="0" icon="PC-2D-Desktop-Generic-S.svg" config="0" left="373" top="120">
+        <interface id="0" name="eth0" type="ethernet" network_id="2"/>
+      </node>
+      <node id="2" name="VPC2" type="vpcs" template="vpcs" image="" ethernet="1" delay="0" icon="PC-2D-Desktop-Generic-S.svg" config="0" left="1128" top="618">
+        <interface id="0" name="eth0" type="ethernet" network_id="7"/>
+      </node>
+      <node id="3" name="Linux3" type="qemu" template="linux" image="linux-ubuntu24" console="vnc" cpu="2" cpulimit="0" ram="4096" ethernet="1" uuid="9d659e72-8efa-4c93-a143-84c237839005" firstmac="00:50:00:00:03:00" qemu_options="-machine type=pc,accel=kvm -vga std -usbdevice tablet -boot order=cd -cpu host -k fr" qemu_version="2.12.0" qemu_arch="x86_64" qemu_nic="virtio-net-pci" delay="0" icon="Server-2D-Linux-S.svg" config="0" left="374" top="261">
+        <interface id="0" name="e0" type="ethernet" network_id="1"/>
+      </node>
+      <node id="4" name="Linux4" type="qemu" template="linux" image="linux-ubuntu24" console="vnc" cpu="2" cpulimit="0" ram="4096" ethernet="1" uuid="30c45f9f-764f-40b3-8d72-546d0dc412f3" firstmac="00:50:00:00:04:00" qemu_options="-machine type=pc,accel=kvm -vga std -usbdevice tablet -boot order=cd -cpu host -k fr" qemu_version="2.12.0" qemu_arch="x86_64" qemu_nic="virtio-net-pci" delay="0" icon="Server-2D-Linux-S.svg" config="0" left="1124" top="161">
+        <interface id="0" name="e0" type="ethernet" network_id="5"/>
+      </node>
+      <node id="5" name="VyOS" type="qemu" template="vyos" image="vyos-2026.03-generic-amd64" console="telnet" cpu="1" cpulimit="0" ram="512" ethernet="4" uuid="d4e2e50f-6b29-4003-9ad1-d2e2ea439128" qemu_options="-machine type=pc,accel=kvm -serial mon:stdio -nographic -no-user-config -nodefaults -rtc base=utc" qemu_version="2.12.0" qemu_arch="x86_64" qemu_nic="e1000" delay="0" icon="Router-2D-Gen-Grey-S.svg" config="0" left="1120" top="362">
+        <interface id="0" name="eth0" type="ethernet" network_id="4"/>
+        <interface id="1" name="eth1" type="ethernet" network_id="5"/>
+      </node>
+      <node id="6" name="Mikrotik" type="qemu" template="mikrotik" image="mikrotik-6.49.18" console="telnet" cpu="1" cpulimit="0" ram="256" ethernet="4" uuid="16c17e5f-4ce4-4e49-b369-c762b045da52" qemu_options="-machine type=pc,accel=kvm -serial mon:stdio -nographic -no-user-config -nodefaults -display none -vga std -rtc base=utc" qemu_version="2.12.0" qemu_arch="x86_64" qemu_nic="e1000-82545em" delay="0" icon="Router-2D-Gen-White-S.svg" config="0" left="669" top="611">
+        <interface id="0" name="eth1" type="ethernet" network_id="6"/>
+        <interface id="1" name="eth2" type="ethernet" network_id="7"/>
+      </node>
+      <node id="7" name="vIOS" type="qemu" template="vios" image="vios-vios" console="telnet" cpu="1" cpulimit="0" ram="1024" ethernet="4" uuid="1ffc65e4-d534-45de-bd2a-d71f1199080b" qemu_options="-machine type=pc,accel=kvm -serial mon:stdio -nographic -no-user-config -nodefaults -rtc base=utc -cpu host" qemu_version="2.4.0" qemu_arch="x86_64" delay="0" icon="Router-2D-Gen-White-S.svg" config="0" left="669" top="361">
+        <interface id="0" name="Gi0/0" type="ethernet" network_id="3"/>
+        <interface id="1" name="Gi0/1" type="ethernet" network_id="4"/>
+        <interface id="2" name="Gi0/2" type="ethernet" network_id="6"/>
+      </node>
+      <node id="8" name="Switch" type="qemu" template="viosl2" image="viosl2-viosl2" console="telnet" cpu="1" cpulimit="0" ram="1024" ethernet="8" uuid="e21c0458-d386-40bb-bb87-02abc64ef667" qemu_options="-machine type=pc,accel=kvm -serial mon:stdio -nographic -no-user-config -nodefaults -rtc base=utc -cpu host" qemu_version="2.4.0" qemu_arch="x86_64" delay="0" icon="Switch-2D-L3-Generic-S.svg" config="0" left="671" top="163">
+        <interface id="0" name="Gi0/0" type="ethernet" network_id="3"/>
+        <interface id="1" name="Gi0/1" type="ethernet" network_id="2"/>
+        <interface id="2" name="Gi0/2" type="ethernet" network_id="1"/>
+      </node>
+    </nodes>
+    <networks>
+      <network id="1" type="bridge" name="Net-Linux3iface_0" left="447" top="319" visibility="0" icon="lan.png"/>
+      <network id="2" type="bridge" name="Net-VPC1iface_0" left="441" top="178" visibility="0" icon="lan.png"/>
+      <network id="3" type="bridge" name="Net-Switchiface_0" left="744" top="226" visibility="0" icon="lan.png"/>
+      <network id="4" type="bridge" name="Net-vIOSiface_1" left="744" top="415" visibility="0" icon="lan.png"/>
+      <network id="5" type="bridge" name="Net-VyOSiface_1" left="1200" top="409" visibility="0" icon="lan.png"/>
+      <network id="6" type="bridge" name="Net-vIOSiface_2" left="744" top="415" visibility="0" icon="lan.png"/>
+      <network id="7" type="bridge" name="Net-Mikrotikiface_1" left="747" top="637" visibility="0" icon="lan.png"/>
+    </networks>
+  </topology>
+</lab>
